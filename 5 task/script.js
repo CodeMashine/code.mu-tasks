@@ -1,14 +1,16 @@
 'use strict';
 
-let field = document.querySelector('.field');
+const field = document.querySelector('.field');
 const startBtn = document.querySelector('.start');
 const score = document.querySelector('.score');
 const timer = document.querySelector('.time');
 const timeBtn = document.querySelector('.timeBtn');
+const scoreResult = document.querySelector('.score_result');
+const timeResult = document.querySelector('.time_result');
 let scoreCounter = 0;
-let timeCounter = 5;
+let timeCounter = 60;
 
-let interval ;
+let interval;
 
 function render(a, b) {
     for (let i = 0; i < a; i++) {
@@ -19,7 +21,6 @@ function render(a, b) {
             tr.append(td);
         }
         field.append(tr);
-
     }
 }
 
@@ -33,55 +34,45 @@ function programChoise(num) {
 
 function startGame() {
     timeBtn.removeEventListener('click', timerFuncDecrease);
-    startBtn.removeEventListener('click', startGame);
-    programChoise(2);
+    startBtn.removeEventListener('click', timerFuncIncrease);
+
+    programChoise(10);
     showSecret();
     setTimeout(showSecret, 3000);
     setTimeout(function () {
         field.addEventListener('click', game)
     }, 3000);
-    gameListener() ;
-};
+    gameListener();
+}
 
 function game(event) {
     if (event.target.closest('.chosen')) {
         event.target.classList.add('uncovered');
-        score.innerText =+score.innerText+1 ; // лучше так или с промежуточной переменной?
+        score.innerText = +score.innerText + 1; // лучше так или с промежуточной переменной?
     } else if (event.target.closest('.square')) {
         event.target.classList.add('blue');
     }
+    gameListener();
 }
 
 function gameListener() {
     const chosenNum = document.querySelectorAll('.chosen');
 
     const timeCounter = +document.querySelector('.time').innerText;
-   
-    console.log(chosenNum.length);
-    console.log(score.innerText);
-    console.log(score.innerText==chosenNum.length);
-    console.log(timeCounter);
 
-    if (timeCounter < 0||(+score.innerText===chosenNum.length)) {
+    if (timeCounter < 0 || (+score.innerText === chosenNum.length)) {
         stopGame();
-        
-        // }else if (timeCounter < 0||(+score.innerText===chosenNum.length)) {
-    //         stopGame() ;
-    //     }
     }
-
 }
 
 function stopGame() {
-    clearInterval(interval, 1000) ; 
-    // timer.innerText = 60 ;
-    // scoreCounter = 0;
-    // score.innerText = 0 ;
+    clearInterval(interval, 1000);
     field.removeEventListener('click', game);
     setTimeout(clearField, 2000);
     startBtn.addEventListener('click', startGame);
     timeBtn.addEventListener('click', timerFuncDecrease);
-    console.log('game over');
+    timeResult.innerText = timer.innerText;
+    scoreResult.innerText = score.innerText;
 }
 
 function showSecret() {
@@ -90,10 +81,12 @@ function showSecret() {
         prop.classList.toggle('red');
     }
 
-    //setTimeout(showSecret , 3000) ;  почему то не вызывается из себя. рекурсия не работает
+    //setTimeout(showSecret , 3000) ;  почему то не вызывается из себя.
 }
 
 function clearField() {
+    timer.innerText = 60;
+    score.innerText = 0
     let field = document.querySelectorAll('td');
     for (let prop of field) {
         prop.className = 'square';
@@ -101,17 +94,27 @@ function clearField() {
 }
 
 function timerFuncDecrease() {
+    timeCounter = 60 ;
+    interval = setInterval(() => {
+        timer.innerText = timeCounter--;
+    }, 1000); // правильное ли решение передать setinterval наружу? есть ли решение лучше?
     startGame();
-    interval= setInterval(tick, 1000); // правильное ли решение передать setinterval наружу? есть ли решение лучше?
-
-    
 }
 
-function tick() {
-    timer.innerText = timeCounter--;
+// function tick() {
+//     timer.innerText = timeCounter--;
+// }
+
+
+function timerFuncIncrease() {
+    timeCounter = 0;
+    interval = setInterval(() => {
+        timer.innerText = timeCounter++;
+    }, 1000);
+    startGame();
 }
 
 render(10, 10);
 
-startBtn.addEventListener('click', startGame);
+startBtn.addEventListener('click', timerFuncIncrease);
 timeBtn.addEventListener('click', timerFuncDecrease);
