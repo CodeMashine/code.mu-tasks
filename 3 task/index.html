@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>js.Pr.St.TA</title>
+</head>
+
+<body>
+    <div class='textarea'>
+        <textarea autofocus name="" id="" cols="30" rows="10" class="task"></textarea>
+    </div>
+
+    <div class="checkbox">
+        <div><button class="words" data-index='task1_0'>Количество слов</button></div>
+        <div><button class="letters" data-index='task2_0'>Количество символов</button></div>
+        <div><button class="lettersWOSpace" data-index='task3_0'>Количество символов без пробелов</button></div>
+        <div><button class="percent" data-index='task4_0'>Процентное соотношение символов</button></div>
+    </div>
+
+
+    <div class='task1_0 hide'>В введеном тексте <span class="task1"></span> слов</div><br>
+    <div class='task2_0 hide'><span class="task2"></span> символов</div><br>
+    <div class='task3_0 hide'><span class="task3"></span> символов без пробелов</div><br>
+    <div class='task4_0 hide'><span class="task4">Процентное соотношение символов</span>
+        <ul class="task4_1"></ul>
+    </div>
+
+
+    <script src='script.js'></script>
+</body>
+
+</html>

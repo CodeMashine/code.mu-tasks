@@ -1,0 +1,12 @@
+.hide{
+    display:none ;
+}
+
+
+.checkbox , .textarea {
+    display:inline-flex ;
+}
+
+.checkbox{
+    flex-direction: column;
+}
