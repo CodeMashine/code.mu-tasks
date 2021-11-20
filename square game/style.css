@@ -1,0 +1,31 @@
+td{
+    height: 30px;
+    width:30px ;
+    border:2px solid black ;
+}
+
+td:hover{
+    background-color: rgba(18, 238, 238, 0.5) ;
+}
+
+
+
+.field{
+    border:2px solid black ;
+}
+
+/* .chosen{
+    background-color: red ;
+} */
+
+.red{
+    background-color: red ;
+}
+
+.uncovered {
+    background-color:gold ;
+}
+
+.blue {
+    background-color: blue;
+}
