@@ -1,0 +1,41 @@
+*{
+    margin:0;
+    padding:0;
+}
+
+
+
+.main{
+    display:flex ;
+    justify-content: center;
+
+}
+
+.field ,
+.list {
+    display:flex;
+    flex-direction: column;
+    margin:1rem ;
+}
+
+.field{
+    padding-inline-start: 0px!important ;
+}
+
+
+
+.hide{
+    display:none ;
+}
+
+li{
+    list-style-type: none;
+    background-color:rgb(233, 221, 221) ;
+    text-align:center ;
+    border: 2px dotted black ;
+    margin:0.2rem ;
+}
+
+.edit{
+    background-color:aqua;
+}

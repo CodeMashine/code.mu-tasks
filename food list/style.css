@@ -1,0 +1,17 @@
+.upper{
+    display:flex ;
+    justify-content:ctnter ;
+    margin-top:2rem;
+}
+
+
+.jimbotron{
+    margin-top:5rem ;
+}
+
+
+.table td {
+    border:2px solid black ;
+    height:1rem ;
+    width: 6rem ;
+}
